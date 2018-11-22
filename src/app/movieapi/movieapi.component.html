@@ -1,0 +1,74 @@
+
+<div class="container" id="search-component">
+  
+  <label for="search-box" class="search-label">
+ Movie Search
+  </label>
+  
+  <div class="input-group groups">
+      <div ngbDropdown  class="d-inline-block">
+          <input class="form-control textbox"  id="dropdownBasic1" ngbDropdownToggle type="text" (click)="toggleDropDown()" placeholder="Search..." #searchBox id="search-box" autofocus="true"/>
+          <span class="recent">Recent :</span>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="drop">
+            <button class="dropdown-item dropdown-button" *ngFor="let s of searches; let i=index"  >
+              <a href="#">{{s}}</a></button>
+          </div>
+        </div>
+   <!-- <input class="form-control textbox" (click)="toggleDropDown()" placeholder="Search..." #searchBox id="search-box" autofocus="true"/>
+    <ul *ngIf="showDropDown" class="dropdown">
+      <div>
+<li class="sub-dropdown" *ngFor="let s of searches">
+{{s}}
+</li>
+</div>
+</ul>-->
+    <span class="input-group-btn">
+      <button class="btn btn-danger button" type="submit" (click)="searchMovies(searchBox.value)">
+        <span class="glyphicon glyphicon-search white" aria-hidden="true"></span>
+      </button>
+    </span>
+  </div>
+
+  <div *ngIf="movieFound">
+
+    <div class="media movie-media">
+      <div class="image-img">
+        <a href="#">
+          <img class="media-object" src="{{moviePoster}}" alt="{{movie.Title}}">
+        </a>
+      </div>
+      <hr>
+      <div class="media-body media-content">
+        <h4 class="media-heading">
+          
+            <div class="movie-props"><p class="p1"><span class="span1">Title </span><b> : </b>    {{movie.Title}}</p></div>
+            <hr>
+             <div class="movie-props"><p class="p2"><span class="span1">Year </span><b> : </b>    {{movie.Year}}</p></div>  
+            <hr>
+             <div class="movie-props"><p class="p3"><span class="span1">Rating </span><b> : </b>    {{movie.Rated}}</p> </div>
+            <hr>
+             <div class="movie-props"><p class="p4"><span class="span1">Country </span><b> : </b>    {{movie.Country}}</p></div>
+            <hr>
+        </h4>
+      
+            <div class="movie-props"><p class="p5"><span class="span1">Summary </span><b> : </b>   {{movie.Plot}}</p></div>
+        
+        <hr>
+      
+            <div class="movie-props"><p class="p6"><span class="span1">Genre </span> <b> : </b>    {{movie.Genre}}</p></div>
+        
+        <hr>
+        
+            <div class="movie-props"><p class="p7"><span class="span1">Starring </span> <b> : </b>    {{movie.Actors}}</p></div>
+       
+        <hr>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="error-messages" *ngIf="!movieFound">
+   <span> {{message}}</span>
+  </div>
+
+</div>
